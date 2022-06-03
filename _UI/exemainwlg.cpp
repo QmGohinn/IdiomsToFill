@@ -172,6 +172,35 @@ void ExeMainWlg::on_pushButton_2_clicked()
         exeGlobal::g_rightIdioms.push_back(_res);
         exeGlobal::g_allIdioms.removeOne(_res);
         IdiomsToUI();
+        if(exeGlobal::g_rightNum == 2){
+            QString _Str = "答对列表:\n";
+            int _num = 0;
+            for(auto& _it : exeGlobal::g_rightIdioms){
+                _Str += _it;
+                _num += 1;
+                if(_num % 5 == 0){
+                    _Str += "\n";
+                    _num = 0;
+                }
+                else{
+                    _Str += " ";
+                }
+            }
+            _Str += "\n答错列表:\n";
+            int _num1 = 0;
+            for(auto& _it : exeGlobal::g_wrongIdioms){
+                _Str += _it;
+                _num1 += 1;
+                if(_num1 % 5 == 0){
+                    _Str += "\n";
+                    _num1 = 0;
+                }
+                else{
+                    _Str += " ";
+                }
+            }
+            QMessageBox::information(this, "通 知", _Str, "知道了");
+        }
         return;
     }
     else{
